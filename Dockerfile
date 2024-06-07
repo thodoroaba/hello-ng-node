@@ -1,5 +1,5 @@
 # Stage 1: Build the backend
-FROM node:18-alpine AS backend-build
+FROM node:alpine AS backend-build
  
 WORKDIR /backend
  
@@ -8,17 +8,18 @@ RUN npm install
 COPY backend ./
  
 # Stage 2: Build the frontend
-FROM node:18-alpine AS frontend-build
+FROM node:alpine AS frontend-build
  
 WORKDIR /frontend
  
 COPY frontend/package*.json ./
+RUN npm install -g @angular/cli
 RUN npm install
 COPY frontend ./
 RUN ng build
  
 # Stage 3: Combine both backend and frontend
-FROM node:18-alpine
+FROM node:alpine
  
 # Backend
 WORKDIR /app

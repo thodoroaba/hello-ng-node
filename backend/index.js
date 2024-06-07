@@ -8,9 +8,6 @@ app.use(cors());
 
 app.use('/', express.static("web/dist/frontend/browser"));
 
-
-// res.sendFile(__dirname + '/index.html');
-
 app.get('/hello', (req, res) => {
     console.log(`############ ~ file: index.js:6 ~ app.get ~ req:`, JSON.stringify(req.headers));
     res.send('Hello World!')
